@@ -2,38 +2,48 @@
 
 Веб-приложение на Django для оформления заявок на клининговые услуги.
 
+---
+
 ## 🚀 Быстрый запуск
 
 ```bash
-git clone https://github.com/ElizarovAleksey/Clining-Service-Lite.git
-cd Project
+    git clone https://github.com/ElizarovAleksey/Clining-Service-Lite.git
+    cd Clining-Service-Lite
 
-python -m venv venv
-source venv/bin/activate  # Linux
-# venv\Scripts\activate   # Windows
+    python -m venv venv
+    source venv/bin/activate  # Linux
+    # venv\Scripts\activate   # Windows
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
-python manage.py makemigrations   # если нужно
-python manage.py migrate
-python manage.py loaddata initial_data
+    python manage.py migrate
+    python manage.py loaddata initial_data
 
-python manage.py createsuperuser # если нужно
+    python manage.py runserver
+```
+Открыть в браузере:
 
-python manage.py runserver
-
+```bash
+    http://127.0.0.1:8000/
+```
 👤 Тестовый администратор
 
     Логин: adminka
     Пароль: cleanservic
 
+Админка доступна по адресу:
+```bash
+    http://127.0.0.1:8000/admin/
+```
 📦 Функционал
 
     Регистрация пользователей
     Авторизация
     Создание заявок
-    История заявок
+    Просмотр истории заявок
     Панель администратора
     Фильтрация и изменение статусов
+    Отмена заявки с указанием причины
     Кастомизированная админка
     Адаптивный интерфейс
+    Слайдер на главной странице
