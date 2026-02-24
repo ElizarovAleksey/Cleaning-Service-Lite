@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Создание заявки{% endblock %}
+
+{% block content %}
+<h2>Создать заявку</h2>
+
+<form method="post" class="form-box">
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+    <div class="error">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <div class="form-grid">
+    <div class="field field-full">
+      <label for="{{ form.address.id_for_label }}">Адрес</label>
+      {{ form.address }}
+      {% if form.address.errors %}<div class="error">{{ form.address.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.contact_phone.id_for_label }}">Контактный телефон</label>
+      {{ form.contact_phone }}
+      {% if form.contact_phone.errors %}<div class="error">{{ form.contact_phone.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.contact_email.id_for_label }}">Email</label>
+      {{ form.contact_email }}
+      {% if form.contact_email.errors %}<div class="error">{{ form.contact_email.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.desired_datetime.id_for_label }}">Дата и время</label>
+      {{ form.desired_datetime }}
+      {% if form.desired_datetime.errors %}<div class="error">{{ form.desired_datetime.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.service.id_for_label }}">Услуга</label>
+      {{ form.service }}
+      {% if form.service.errors %}<div class="error">{{ form.service.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.payment_type.id_for_label }}">Тип оплаты</label>
+      {{ form.payment_type }}
+      {% if form.payment_type.errors %}<div class="error">{{ form.payment_type.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field field-full">
+      <label class="check">
+        {{ form.other_service }}
+        <span>Иная услуга</span>
+      </label>
+    </div>
+
+    <div class="field field-full" id="otherServiceWrap">
+      <label for="{{ form.other_service_text.id_for_label }}">Описание иной услуги</label>
+      {{ form.other_service_text }}
+      {% if form.other_service_text.errors %}<div class="error">{{ form.other_service_text.errors }}</div>{% endif %}
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn">Отправить</button>
+    <a href="{% url 'cabinet' %}" class="btn btn-ghost">Назад</a>
+  </div>
+</form>
+
+<script>
+  (function () {
+    const cb = document.getElementById("id_other_service");
+    const wrap = document.getElementById("otherServiceWrap");
+    if (!cb || !wrap) return;
+
+    function sync() {
+      wrap.style.display = cb.checked ? "block" : "none";
+      if (!cb.checked) {
+        const t = document.getElementById("id_other_service_text");
+        if (t) t.value = "";
+      }
+    }
+    cb.addEventListener("change", sync);
+    sync();
+  })();
+</script>
+{% endblock %}

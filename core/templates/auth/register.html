@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<h2>Регистрация</h2>
+
+<form method="post" class="form-box">
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+    <div class="error">{{ form.non_field_errors }}</div>
+  {% endif %}
+
+  <div class="form-grid auth-grid">
+    <div class="field">
+      <label for="{{ form.username.id_for_label }}">Логин</label>
+      {{ form.username }}
+      {% if form.username.errors %}<div class="error">{{ form.username.errors }}</div>{% endif %}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.password.id_for_label }}">Пароль</label>
+      {{ form.password }}
+      {% if form.password.errors %}<div class="error">{{ form.password.errors }}</div>{% endif %}
+      <div class="hint">Минимум 8 символов</div>
+    </div>
+
+    <div class="field field-full">
+      <label for="{{ form.full_name.id_for_label }}">ФИО</label>
+      {{ form.full_name }}
+      {% if form.full_name.errors %}<div class="error">{{ form.full_name.errors }}</div>{% endif %}
+      <div class="hint">Только кириллица и пробелы</div>
+    </div>
+
+    <div class="field">
+      <label for="{{ form.phone.id_for_label }}">Телефон</label>
+      {{ form.phone }}
+      {% if form.phone.errors %}<div class="error">{{ form.phone.errors }}</div>{% endif %}
+      <div class="hint">Формат: +7(XXX)-XXX-XX-XX</div>
+    </div>
+
+    <div class="field">
+      <label for="{{ form.email.id_for_label }}">Email</label>
+      {{ form.email }}
+      {% if form.email.errors %}<div class="error">{{ form.email.errors }}</div>{% endif %}
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn">Зарегистрироваться</button>
+    <a href="{% url 'login' %}" class="btn btn-ghost">Уже есть аккаунт?</a>
+  </div>
+</form>
+{% endblock %}

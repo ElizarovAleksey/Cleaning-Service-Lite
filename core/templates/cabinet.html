@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+<h2>Личный кабинет</h2>
+
+<a href="{% url 'order_new' %}" class="btn">Создать заявку</a>
+
+{% for order in orders %}
+  <div class="card">
+
+    <div class="card-title">
+      <div>
+        <b>Заявка №{{ order.id }}</b>
+        <span class="muted">от {{ order.created_at|date:"d.m.Y H:i" }}</span>
+      </div>
+
+      {# статус-бейдж #}
+      {% with s=order.status.name|lower %}
+        {% if "нов" in s %}
+          <span class="badge badge-new">Новая</span>
+        {% elif "работ" in s %}
+          <span class="badge badge-work">В работе</span>
+        {% elif "выполн" in s %}
+          <span class="badge badge-done">Выполнено</span>
+        {% elif "отмен" in s %}
+          <span class="badge badge-cancel">Отменено</span>
+        {% else %}
+          <span class="badge">{{ order.status.name }}</span>
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="card-row"><b>Услуга:</b> {{ order.service.name }}</div>
+    <div class="card-row"><b>Адрес:</b> {{ order.address }}</div>
+    <div class="card-row"><b>Дата:</b> {{ order.desired_datetime|date:"d.m.Y H:i" }}</div>
+    <div class="card-row"><b>Оплата:</b> {{ order.get_payment_type_display }}</div>
+
+    {% if order.other_service %}
+      <div class="card-row"><b>Иная услуга:</b> {{ order.other_service_text }}</div>
+    {% endif %}
+
+    {% with s=order.status.name|lower %}
+      {% if "отмен" in s and order.cancel_reason %}
+        <div class="cancel-reason">
+          <b>Причина отмены:</b> {{ order.cancel_reason }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+  </div>
+{% empty %}
+  <p>Заявок пока нет.</p>
+{% endfor %}
+{% endblock %}

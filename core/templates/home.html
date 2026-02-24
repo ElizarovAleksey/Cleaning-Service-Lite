@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <h1>Профессиональная уборка<br>быстро и качественно</h1>
+    <p>Оформите заявку онлайн за 1 минуту. Работаем по всему городу.</p>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'order_new' %}" class="btn hero-btn">Создать заявку</a>
+    {% else %}
+        <a href="{% url 'register' %}" class="btn hero-btn">Оформить заявку</a>
+    {% endif %}
+</section>
+
+<section class="slider">
+    <div class="slides">
+        <img src="{% static 'img/slide1.jpg' %}" class="slide active">
+        <img src="{% static 'img/slide2.jpg' %}" class="slide">
+        <img src="{% static 'img/slide3.jpg' %}" class="slide">
+    </div>
+
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+</section>
+
+<section class="features">
+    <h2>Наши услуги</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>Общий клининг</h3>
+            <p>Ежедневная и регулярная уборка помещений.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Генеральная уборка</h3>
+            <p>Глубокая очистка всех поверхностей.</p>
+        </div>
+        <div class="feature-card">
+            <h3>После ремонта</h3>
+            <p>Удаление строительной пыли и загрязнений.</p>
+        </div>
+    </div>
+</section>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let current = 0;
+
+function showSlide(index){
+    slides.forEach(s => s.classList.remove("active"));
+    slides[index].classList.add("active");
+}
+
+document.querySelector(".next").onclick = function(){
+    current = (current + 1) % slides.length;
+    showSlide(current);
+}
+
+document.querySelector(".prev").onclick = function(){
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+}
+
+setInterval(() => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+}, 3000);
+</script>
+
+{% endblock %}

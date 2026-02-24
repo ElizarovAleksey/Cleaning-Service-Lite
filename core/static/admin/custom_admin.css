@@ -1,0 +1,107 @@
+/* =======================
+   HEADER
+======================= */
+
+#header {
+    background: #1f2a38 !important;   /* тёмный */
+}
+
+#header h1 a {
+    color: #1abc9c !important;        /* фирменный зелёный */
+    font-weight: bold;
+}
+
+#user-tools {
+    color: #ecf0f1 !important;
+}
+
+#user-tools a {
+    color: #1abc9c !important;
+}
+
+
+/* =======================
+   MODULE BLOCKS
+======================= */
+
+.module h2, .module caption {
+    background: #2c3e50 !important;
+    color: white !important;
+    border-radius: 6px 6px 0 0;
+}
+
+/* Блоки на главной */
+.module {
+    border-radius: 10px !important;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+
+/* =======================
+   TABLES
+======================= */
+
+.results table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.results thead th {
+    background: #34495e !important;
+    color: white !important;
+}
+
+.results tbody tr:nth-child(even) {
+    background: #f4f6f9;
+}
+
+.results tbody tr:hover {
+    background: #eafaf5 !important;
+}
+
+
+/* =======================
+   BUTTONS
+======================= */
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input {
+    background: #1abc9c !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 6px 12px;
+}
+
+.button:hover,
+input[type=submit]:hover {
+    background: #16a085 !important;
+}
+
+
+/* =======================
+   LINKS
+======================= */
+
+.content a,
+.module a,
+.results a {
+    color: #1abc9c !important;
+}
+
+.content a:hover,
+.module a:hover,
+.results a:hover {
+    color: #16a085 !important;
+}
+
+
+/* =======================
+   BREADCRUMBS
+======================= */
+
+div.breadcrumbs {
+    background: #ecf0f1 !important;
+    border-radius: 6px;
+}
