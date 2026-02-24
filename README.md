@@ -7,7 +7,7 @@
 ## 🚀 Быстрый запуск
 
 ```bash
-    git clone https://github.com/ElizarovAleksey/Clining-Service-Lite.git
+    git clone https://github.com/ElizarovAleksey/Cleaning-Service-Lite.git
     cd Clining-Service-Lite
 
     python -m venv venv
