@@ -5,8 +5,8 @@
 ## 🚀 Быстрый запуск
 
 ```bash
-git clone <repo>
-cd exam_project
+git clone https://github.com/ElizarovAleksey/Clining-Service-Lite.git
+cd Project
 
 python -m venv venv
 source venv/bin/activate  # Linux
